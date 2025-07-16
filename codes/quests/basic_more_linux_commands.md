@@ -1,166 +1,33 @@
 # 연습문제 1: 기본 파일 시스템 탐색
 ## 1-1. 현재 위치 확인 및 이동
 * 현재 작업 디렉터pw리의 절대 경로를 출력하시오.
-* 홈 디렉터리로 이동하시오.
-* 루트 디렉터리(/)로 이동하시오.
-* 다시 홈 디렉터리로 돌아가시오.
 ```shell
 [hoseung@localhost ~]$ pwd
-/home/hoseung
+```
+* 홈 디렉터리로 이동하시오.
+```shell
 [hoseung@localhost ~]$ cd ~
+```
+* 루트 디렉터리(/)로 이동하시오.
+```shell
 [hoseung@localhost ~]$ cd /
+```
+* 다시 홈 디렉터리로 돌아가시오.
+```shell
 [hoseung@localhost /]$ cd ~
 ```
 ## 1-2. 디렉터리 내용 확인
 * 현재 디렉터리의 파일과 폴더 목록을 출력하시오.
-* 숨김 파일을 포함한 모든 파일의 상세 정보를 출력하시오.
-* /etc 디렉터리의 내용을 확인하시오.
 ```shell
 [hoseung@localhost ~]$ ls
-Desktop    Downloads  Pictures  Templates
-Documents  Music      Public    Videos
-[hoseung@localhost ~]$ ls -al
-total 20
-drwx------. 14 hoseung hoseung 4096 Jul 16 10:53 .
-drwxr-xr-x.  3 root    root      21 Jul 16 10:53 ..
--rw-r--r--.  1 hoseung hoseung   18 Apr 30  2024 .bash_logout
--rw-r--r--.  1 hoseung hoseung  141 Apr 30  2024 .bash_profile
--rw-r--r--.  1 hoseung hoseung  492 Apr 30  2024 .bashrc
-drwx------.  7 hoseung hoseung  179 Jul 16 10:53 .cache
-drwxr-xr-x.  8 hoseung hoseung 4096 Jul 16 10:53 .config
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Desktop
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Documents
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Downloads
-drwx------.  4 hoseung hoseung   32 Jul 16 10:53 .local
-drwxr-xr-x.  4 hoseung hoseung   39 Jul 16 10:12 .mozilla
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Music
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Pictures
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Public
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Templates
-drwxr-xr-x.  2 hoseung hoseung    6 Jul 16 10:53 Videos
-[hoseung@localhost ~]$ ls /etc
-accountsservice          makedumpfile.conf.sample
-adjtime                  man_db.conf
-aliases                  mcelog
-alsa                     microcode_ctl
-alternatives             mime.types
-anacrontab               mke2fs.conf
-appstream.conf           modprobe.d
-asound.conf              modules-load.d
-at.deny                  motd
-audit                    motd.d
-authselect               mtab
-avahi                    multipath
-bash_completion.d        nanorc
-bashrc                   netconfig
-bindresvport.blacklist   NetworkManager
-binfmt.d                 networks
-bluetooth                nftables
-brlapi.key               nsswitch.conf
-brltty                   nsswitch.conf.bak
-brltty.conf              nvme
-chromium                 openldap
-chrony.conf              opt
-chrony.keys              os-release
-cifs-utils               ostree
-cockpit                  PackageKit
-containers               pam.d
-cron.d                   papersize
-cron.daily               passwd
-cron.deny                passwd-
-cron.hourly              pbm2ppa.conf
-cron.monthly             pinforc
-crontab                  pkcs11
-cron.weekly              pkgconfig
-crypto-policies          pki
-crypttab                 plymouth
-csh.cshrc                pm
-csh.login                pnm2ppa.conf
-cups                     polkit-1
-cupshelpers              popt.d
-dbus-1                   printcap
-dconf                    profile
-debuginfod               profile.d
-default                  protocols
-depmod.d                 pulse
-dhcp                     qemu-ga
-DIR_COLORS               ras
-DIR_COLORS.lightbgcolor  rc.d
-dnf                      rc.local
-dnsmasq.conf             redhat-release
-dnsmasq.d                request-key.conf
-dracut.conf              request-key.d
-dracut.conf.d            resolv.conf
-egl                      rocky-release
-enscript.cfg             rocky-release-upstream
-environment              rpc
-ethertypes               rpm
-exports                  rsyncd.conf
-favicon.png              rsyslog.conf
-filesystems              rsyslog.d
-firefox                  rwtab.d
-firewalld                samba
-flatpak                  sane.d
-fonts                    sasl2
-foomatic                 security
-fprintd.conf             selinux
-fstab                    services
-fuse.conf                sestatus.conf
-fwupd                    setroubleshoot
-gcrypt                   sgml
-gdm                      shadow
-geoclue                  shadow-
-glvnd                    shells
-gnupg                    skel
-GREP_COLORS              smartmontools
-groff                    sos
-group                    speech-dispatcher
-group-                   ssh
-grub2.cfg                ssl
-grub.d                   sssd
-gshadow                  statetab.d
-gshadow-                 subgid
-gss                      subgid-
-host.conf                subuid
-hostname                 subuid-
-hosts                    sudo.conf
-hp                       sudoers
-inittab                  sudoers.d
-inputrc                  sudo-ldap.conf
-iscsi                    sysconfig
-issue                    sysctl.conf
-issue.d                  sysctl.d
-issue.net                systemd
-kdump                    system-release
-kdump.conf               system-release-cpe
-kernel                   terminfo
-keys                     tmpfiles.d
-keyutils                 tpm2-tss
-krb5.conf                trusted-key.key
-krb5.conf.d              tuned
-ld.so.cache              udev
-ld.so.conf               udisks2
-ld.so.conf.d             updatedb.conf
-libaudit.conf            UPower
-libblockdev              usb_modeswitch.conf
-libibverbs.d             vconsole.conf
-libnl                    vimrc
-libpaper.d               virc
-libreport                vmware-tools
-libssh                   vulkan
-libuser.conf             wgetrc
-locale.conf              wireplumber
-localtime                wpa_supplicant
-login.defs               X11
-logrotate.conf           xattr.conf
-logrotate.d              xdg
-lsm                      xml
-lvm                      yum
-machine-id               yum.conf
-magic                    yum.repos.d
-mailcap
-
 ```
+* 숨김 파일을 포함한 모든 파일의 상세 정보를 출력하시오.
+```shell
+[hoseung@localhost ~]$ ls -al
+```
+* /etc 디렉터리의 내용을 확인하시오.
+
+
 # 연습문제 2: 디렉터리 및 파일 생성
 ## 2-1. 디렉터리 구조 생성
 다음과 같은 디렉터리 구조를 생성하시오:
