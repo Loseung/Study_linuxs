@@ -7,3 +7,5 @@
 ## 연습 문제
 * [연습문제1](codes/quests/basic_linux_commands.md)
 * [연습문제2](codes/quests/basic_more_linux_commands.md)
+* [연습문제3](codes/quests/relative_path_commands.md)
+* [연습문제4](codes/quests/linux_wildcard_practice.md)
