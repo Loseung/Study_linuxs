@@ -180,7 +180,7 @@ test1.log  test2.log
 ### 7-3. 모든 하위 디렉터리에 `readme.txt` 파일 생성
 ```bash
 # 명령어를 작성하세요
-
+[hoseung@localhost wildcard_practice]$ touch ./{docs,logs,temp}/readme.txt
 ```
 
 ---
