@@ -9,3 +9,4 @@
 * [연습문제2](codes/quests/basic_more_linux_commands.md)
 * [연습문제3](codes/quests/relative_path_commands.md)
 * [연습문제4](codes/quests/linux_wildcard_practice.md)
+* [연습문제5](codes/quests/linux_nano_practice_problems.md)
