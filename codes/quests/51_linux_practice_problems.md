@@ -53,6 +53,12 @@ hello.sh 파일을 nano로 열어 다음 내용을 작성하세요:
 echo "안녕하세요\! 리눅스 세계에 오신 것을 환영합니다."
 
 **명령어를 작성하세요:**
+```shell
+#nano
+echo "안녕하세요! 리눅스 세계에 오신 것을 환영합니다."
+
+nano hello.sh
+```
 
 \# nano 편집기로 hello.sh 파일 열기
 
@@ -61,6 +67,12 @@ echo "안녕하세요\! 리눅스 세계에 오신 것을 환영합니다."
 system\_info.txt 파일을 nano로 열어 현재 시스템 정보를 기록하는 내용을 작성하세요.
 
 **명령어를 작성하세요:**
+```shell
+nano system_info.txt
+
+#nano
+df -h
+```
 
 \# nano 편집기로 system\_info.txt 파일 열기
 
@@ -75,6 +87,12 @@ backup.sh 파일을 만들어 다음 기능을 수행하는 스크립트를 작�
 - 현재 디렉터리의 파일 목록 출력
 
 **명령어를 작성하세요:**
+```shell
+#nano
+date && \
+echo "백업을 시작합니다" && \
+ls ./
+```
 
 \# nano로 backup.sh 파일 생성 및 편집
 
@@ -83,6 +101,11 @@ backup.sh 파일을 만들어 다음 기능을 수행하는 스크립트를 작�
 backup.sh 파일에 실행 권한을 부여하세요.
 
 **명령어를 작성하세요:**
+```shell
+#User에 읽기(4)+실행(1)
+#실행을 하려면 읽기까지 포함해야한다.
+chmod 500 backup.sh
+```
 
 \# backup.sh 파일에 실행 권한 부여
 
@@ -91,6 +114,9 @@ backup.sh 파일에 실행 권한을 부여하세요.
 작성한 backup.sh 스크립트를 실행하세요.
 
 **명령어를 작성하세요:**
+```shell
+./backup.sh
+```
 
 \# backup.sh 스크립트 실행
 
@@ -101,6 +127,9 @@ backup.sh 파일에 실행 권한을 부여하세요.
 디렉터리 생성이 성공하면 해당 디렉터리로 이동하는 명령어를 작성하세요.
 
 **명령어를 작성하세요:**
+```shell
+mkdir new_project && cd ./new_project/
+```
 
 \# new\_project 디렉터리 생성 후 성공하면 이동
 
@@ -109,6 +138,9 @@ backup.sh 파일에 실행 권한을 부여하세요.
 test.txt 파일을 생성하고 성공하면 nano로 편집하는 명령어를 작성하세요.
 
 **명령어를 작성하세요:**
+```shell
+touch test.txt && nano test.txt
+```
 
 \# test.txt 파일 생성 후 성공하면 nano로 편집
 
@@ -117,6 +149,12 @@ test.txt 파일을 생성하고 성공하면 nano로 편집하는 명령어를 �
 스크립트 파일을 생성하고, 실행 권한을 부여한 후, 실행하는 일련의 명령어를 작성하세요.
 
 **명령어를 작성하세요:**
+```shell
+#nano
+touch quick_test.sh && "echo 'Hello World'"
+
+chmod 555 quick_test
+```
 
 \# quick\_test.sh 파일에 "echo 'Hello World'" 내용 저장 후 실행 권한 부여 후 실행
 
@@ -127,6 +165,10 @@ test.txt 파일을 생성하고 성공하면 nano로 편집하는 명령어를 �
 test\_script.sh 파일을 생성하고 소유자에게만 모든 권한을 부여하세요.
 
 **명령어를 작성하세요:**
+```shell
+#r(4)+w(2)+x(1)
+touch test_script.sh && chmod 700 test_script.sh
+```
 
 \# test\_script.sh 파일 생성
 
@@ -137,6 +179,10 @@ test\_script.sh 파일을 생성하고 소유자에게만 모든 권한을 부�
 test\_script.sh 파일에 그룹 사용자에게 읽기 및 실행 권한을 추가하세요.
 
 **명령어를 작성하세요:**
+```shell
+#r(4)+x(1)
+chmod test_script.sh 750 test_script.sh
+```
 
 \# 그룹에 읽기, 실행 권한 추가 (750)
 
@@ -145,6 +191,9 @@ test\_script.sh 파일에 그룹 사용자에게 읽기 및 실행 권한을 추
 파일의 현재 권한을 확인하는 명령어를 작성하세요.
 
 **명령어를 작성하세요:**
+```shell
+ls -l test_script.sh
+```
 
 \# 파일 권한 확인
 
@@ -153,6 +202,10 @@ test\_script.sh 파일에 그룹 사용자에게 읽기 및 실행 권한을 추
 test\_script.sh 파일에서 모든 사용자의 실행 권한을 제거하세요.
 
 **명령어를 작성하세요:**
+```shell
+#실행 권한 x(1) 제거
+chmod 640 test_script.sh
+```
 
 \# 모든 사용자의 실행 권한 제거
 
@@ -167,16 +220,29 @@ test\_script.sh 파일에서 모든 사용자의 실행 권한을 제거하세�
 3. "설정 완료" 메시지 출력
 
 **작성할 스크립트 내용:**
+```shell
+nano setup.sh
 
-\#\!/bin/bash
+#!/bin/bash
 
-\# setup.sh 스크립트 내용을 작성하세요
+# setup.sh 스크립트 내용을 작성하세요
+
+mkdir -p ./logs/ && \
+date > ./logs/setup.log && \
+echo ("설정 완료")
+
+```
+
 
 ### 5-2. 스크립트 실행 및 검증
 
 setup.sh 스크립트를 실행하고, 로그 파일이 제대로 생성되었는지 확인하는 명령어를 작성하세요.
 
 **명령어를 작성하세요:**
+```shell
+#setup.sh는 logs/setup.log 파일에 date값을 기록하므로 쓰기 권한까지 줘야한다.
+chmod 755 setup.sh && cat ./logs/setup.log
+```
 
 \# setup.sh 실행 권한 부여 후 실행하고, 로그 파일 내용 확인
 
@@ -189,7 +255,11 @@ setup.sh 스크립트를 실행하고, 로그 파일이 제대로 생성되었�
 `project_logs` 디렉토리를 생성하고, 사용자(User)에게만 **쓰기 권한을 제거**한 후 권한을 확인하는 명령어를 작성하세요.
 
 명령어를 작성하세요:
-
+```shell
+mkdir project_logs/ && \
+chmod 577 ./project_logs/ && \
+ls -l ./project_logs/
+```
 \# project\_logs 디렉토리 생성 후 User의 쓰기 권한 제거, 권한 확인
 
 ---
@@ -205,7 +275,26 @@ setup.sh 스크립트를 실행하고, 로그 파일이 제대로 생성되었�
 * 존재하지 않으면 `"backup 디렉토리가 없습니다"` 메시지 출력
 
 nano에서 작성할 내용 예시:
+```shell
+nano check_dir.sh
 
+#nano
+
+#방법1
+#test 명령어의 -d 옵션으로 디렉토리의 유무를 true(0) false(1)로 나타내고 조건(if)문을 사용
+if test -d "./backup"
+then
+	touch ./backup/checked.txt
+else
+	echo "backup 디렉토리가 없습니다"
+fi
+
+
+#방법2
+#논리(OR) 연산자를 사용하는 방법
+ls ./backup/ && touch ./backup/checked.txt || echo "backup 디렉토리가 없습니다"
+
+```
 \# backup 디렉토리 존재 출력
 
 ---
@@ -215,6 +304,11 @@ nano에서 작성할 내용 예시:
 `project_logs` 디렉토리로 이동한 후, 이동에 성공한 경우 `log.txt` 파일을 만들고 `"로그 생성 완료"` 메시지를 출력하는 명령어를 작성하세요.
 
 명령어를 작성하세요:
+```shell
+#이동에 실패 할 경우 상위 디렉토리로 이동해 project_logs/를 찾을 수 없도록 한다.
+cd ./project_logs && touch ../project_logs/log.txt && echo "로그 생성 완료"
+
+```
 
 \# 디렉토리 이동 && 파일 생성 && 메시지 출력
 
@@ -225,6 +319,9 @@ nano에서 작성할 내용 예시:
 앞서 작성한 `check_dir.sh` 파일에 대해 **사용자(User)** 에게만 실행 권한을 부여하고 현재 권한을 확인하는 명령어를 작성하세요.
 
 명령어를 작성하세요:
+```shell
+chmod 500 check_dir.sh && ls -l check_dir.sh
+```
 
 \# 사용자에게만 실행 권한 부여 및 권한 확인
 
