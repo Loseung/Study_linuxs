@@ -106,6 +106,21 @@ drwxrwx---. 2 root developers 123 Jul 21 16:54 dev
 
 - \# 1-2 답안 작성란  
 ```shell
+[root@localhost private]# chmod u=rwx ./alice/
+[root@localhost private]# chown alice ./alice/
+[root@localhost private]# ls -l
+total 0
+drwx------. 2 alice root 65 Jul 21 16:54 alice
+
+[root@localhost private]# chmod u=rw ./alice/personal.txt 
+[root@localhost private]# chown alice ./alice/personal.txt 
+[root@localhost private]# ls -l ./alice/
+-rw-r--r--. 1 alice root 0 Jul 21 16:54 personal.txt
+
+[root@localhost private]# chmod u=rw ./bob/config.json
+[root@localhost private]# chown bob ./bob/config.json 
+[root@localhost private]# ls -l ./bob/
+-rw-r--r--. 1 bob  root 0 Jul 21 16:54 config.json
 
 ```
 
@@ -126,6 +141,20 @@ drwxrwx---. 2 root developers 123 Jul 21 16:54 dev
 
 - \# 2-1 답안 작성란  
 ```shell
+[root@localhost shared]# chown :developers ./documents/
+[root@localhost shared]# chown :developers ./resources/
+[root@localhost shared]# chown :developers ./tools/
+
+[root@localhost shared]# chmod u+w,g=r,o=r ./documents/
+[root@localhost shared]# chmod 770 ./resources/
+[root@localhost shared]# chmod a=r,g+x ./tools/
+
+[root@localhost shared]# ls -l
+total 0
+drwxr--r--. 2 root developers 68 Jul 21 16:54 documents
+drwxrwx---. 2 root developers 58 Jul 21 16:54 resources
+dr--r-xr--. 2 root developers 40 Jul 21 16:54 tools
+
 
 ```
 
@@ -141,27 +170,22 @@ drwxrwx---. 2 root developers 123 Jul 21 16:54 dev
 
 - \# 2-2 답안 작성란  
 ```shell
+[root@localhost projects]# chown :developers ./project_a/
+[root@localhost projects]# chown alice:bob ./project_b/
+
+[root@localhost projects]# chmod 770 ./project_a/
+[root@localhost projects]# chmod 770 ./project_b/
+
+[root@localhost projects]# ls -l
+total 0
+drwxrwx---. 2 root  developers 55 Jul 21 16:53 project_a
+drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 
 ```  
     
   ---
 
   ## **3\. 고급 권한 설정**
-
-  ### **3-1. 특수 권한 적용**
-
-다음 파일들에 특수 권한을 설정하세요:
-
-* `shared/tools/deploy.sh`: SetGID 설정으로 developers 그룹 권한으로 실행  
-* `backup/` 디렉터리: Sticky Bit 설정으로 파일 소유자만 삭제 가능  
-* `company/departments/hr/salaries.txt`: SetUID 설정 (실제 환경에서는 권장하지 않지만 실습용)
-
-**명령어를 작성하세요:**
-
-- \# 3-1 답안 작성란   
-```shell
-
-```
 
 
   ### **3-2. 숫자 표기법으로 복합 권한 설정**
@@ -176,7 +200,9 @@ drwxrwx---. 2 root developers 123 Jul 21 16:54 dev
 
 - \# 3-2 답안 작성란  
 ```shell
-
+[root@localhost permission_practice]# chmod 640 ./company/departments/finance/budget.xlsx 
+[root@localhost permission_practice]# chmod 644 ./shared/documents/manual.pdf
+[root@localhost permission_practice]# chmod 640 ./logs/2024/06/system.log
 ``` 
     
   ---
@@ -226,17 +252,6 @@ drwxrwx---. 2 root developers 123 Jul 21 16:54 dev
 3. 실행 권한이 없어야 할 데이터 파일에서 실행 권한 제거
 
 **명령어를 작성하세요:**
-
-- \# 5-1 답안 작성란 (보안 감사 명령어)  
-```shell
-
-``` 
-- \# 5-1 답안 작성란 (수정 명령어)  
-```shell
-
-```
-    
-  ---
 
   ## **6\. umask 및 기본 권한 관리**
 
