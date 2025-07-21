@@ -221,6 +221,38 @@ drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 
 - \# 4-1 답안 작성란  
 ```shell
+[root@localhost permission_practice]# chown -R alice:developers company/departments/dev/
+[root@localhost permission_practice]# chown -R diana:managers company/departments/hr/
+[root@localhost permission_practice]# chown -R root:developers shared/tools/
+
+[root@localhost permission_practice]# ls -laR company/departments/{dev,hr} shared/tools/
+company/departments/dev:
+total 12
+drwxr-xr-x. 2 alice developers 123 Jul 21 22:52 .
+drwxr-xr-x. 6 root  root        59 Jul 21 22:52 ..
+-rw-r--r--. 1 alice developers  18 Jul 21 22:52 api.conf
+-rw-r--r--. 1 alice developers  32 Jul 21 22:52 build.sh
+-rw-r--r--. 1 alice developers   0 Jul 21 22:52 config.py
+-rw-r--r--. 1 alice developers  24 Jul 21 22:52 database.conf
+-rw-r--r--. 1 alice developers   0 Jul 21 22:52 main.py
+-rw-r--r--. 1 alice developers   0 Jul 21 22:52 README.md
+-rw-r--r--. 1 alice developers   0 Jul 21 22:52 test.py
+
+company/departments/hr:
+total 4
+drwxr-xr-x. 2 diana managers 89 Jul 21 22:52 .
+drwxr-xr-x. 6 root  root     59 Jul 21 22:52 ..
+-rw-r--r--. 1 diana managers  0 Jul 21 22:52 contracts.pdf
+-rw-r--r--. 1 diana managers  0 Jul 21 22:52 employees.xlsx
+-rw-r--r--. 1 diana managers  0 Jul 21 22:52 policies.txt
+-rw-r--r--. 1 diana managers 25 Jul 21 22:52 salaries.txt
+
+shared/tools/:
+total 8
+drwxr-xr-x. 2 root developers 40 Jul 21 22:52 .
+drwxr-xr-x. 5 root root       53 Jul 21 22:52 ..
+-rw-r--r--. 1 root developers 33 Jul 21 22:52 backup.sh
+-rw-r--r--. 1 root developers 37 Jul 21 22:52 deploy.sh
 
 ```
 
@@ -236,6 +268,17 @@ drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 
 - \# 4-2 답안 작성란  
 ```shell
+[root@localhost permission_practice]# chown :managers company/projects/
+[root@localhost permission_practice]# chown :developers backup/daily/
+
+[root@localhost permission_practice]# ls -la company/projects/ backup/daily/
+backup/daily/:
+total 0
+drwxr-xr-x. 2 root developers 60 Jul 21 22:52 .
+
+company/projects/:
+total 0
+drwxr-xr-x. 5 root managers 57 Jul 21 22:52 .
 
 ```
     
@@ -252,7 +295,11 @@ drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 3. 실행 권한이 없어야 할 데이터 파일에서 실행 권한 제거
 
 **명령어를 작성하세요:**
+```shell
+#학원에서 할 것.?
+find . -perm 755 -print
 
+```
   ## **6\. umask 및 기본 권한 관리**
 
   ### **6-1. umask 설정 및 테스트**
@@ -267,6 +314,19 @@ drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 
 - \# 6-1 답안 작성란  
 ```shell
+[root@localhost permission_practice]# umask 027
+[root@localhost permission_practice]# mkdir -p ./folder1/file1.sh
+[root@localhost permission_practice]# ls -laR ./folder1/
+./folder1/:
+total 0
+drwxr-x---. 3 root root 22 Jul 21 23:50 .
+drwxr-xr-x. 8 root root 91 Jul 21 23:50 ..
+drwxr-x---. 2 root root  6 Jul 21 23:50 file1.sh
+
+./folder1/file1.sh:
+total 0
+drwxr-x---. 2 root root  6 Jul 21 23:50 .
+drwxr-x---. 3 root root 22 Jul 21 23:50 ..
 
 ```
 
@@ -302,7 +362,16 @@ drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 
 - \# 8-1 답안 작성란  
 ```shell
+[root@localhost permission_practice]# chown :developers ./shared/tools/deploy.sh
+[root@localhost permission_practice]# chmod 110 ./shared/tools/deploy.sh 
+[root@localhost permission_practice]# chown alice:diana ./shared/tools/backup.sh
+[root@localhost permission_practice]# chmod 110 ./shared/tools/backup.sh 
+[root@localhost permission_practice]# chmod 100 ./company/departments/dev/build.sh 
 
+[root@localhost permission_practice]# ls -la ./shared/tools/{backup,deploy}.sh ./company/departments/dev/build.sh 
+---x------. 1 alice developers 32 Jul 21 22:52 ./company/departments/dev/build.sh
+---x--x---. 1 alice diana      33 Jul 21 22:52 ./shared/tools/backup.sh
+---x--x---. 1 root  developers 37 Jul 21 22:52 ./shared/tools/deploy.sh
 ```
 
 
@@ -318,7 +387,13 @@ drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 
 - \# 8-2 답안 작성란  
 ```shell
-
+# alice 사용자: umask 022 설정 (일반적인 개발자 설정)
+sh -c 'echo "umask 022" >> /home/alice/.bashrc'
+# diana 사용자: umask 077 설정 (보안 강화 설정)
+sh -c 'echo "umask 077" >> /home/diana/.bashrc'
+# eve 사용자: umask 002 설정 (그룹 협업 친화적 설정)
+sh -c 'echo "umask 002" >> /home/eve/.bashrc'
+#각 사용자는 재로그인해야 적용됩니다."
 ``` 
     
   ---
@@ -338,6 +413,44 @@ drwxrwx---. 2 alice bob        67 Jul 21 16:54 project_b
 
 - \# 9-1 답안 작성란  
 ```shell
+[root@localhost permission_practice]# chmod u+r,g+r,o+r ./company/
+[root@localhost permission_practice]# chmod u+rwx,g+rwx,o-rwx ./company/departments/
+[root@localhost permission_practice]# chown :managers ./company/departments/finance/
+[root@localhost permission_practice]# chmod u+rwx,g-rwx,o-rwx ./company/projects/
+
+[root@localhost permission_practice]# ls -la ./company/ ./company/departments/ ./company/departments/finance/ ./company/projects/
+./company/:
+total 0
+drwxr-xr-x. 4 root root     41 Jul 21 22:52 .
+drwxr-xr-x. 8 root root     91 Jul 21 23:50 ..
+drwxrwx---. 6 root root     59 Jul 21 22:52 departments
+drwx------. 5 root managers 57 Jul 21 22:52 projects
+
+./company/departments/:
+total 0
+drwxrwx---. 6 root  root        59 Jul 21 22:52 .
+drwxr-xr-x. 4 root  root        41 Jul 21 22:52 ..
+drwxr-xr-x. 2 alice developers 123 Jul 21 22:52 dev
+drwxr-xr-x. 2 root  managers    64 Jul 21 22:52 finance
+drwxr-xr-x. 2 diana managers    89 Jul 21 22:52 hr
+drwxr-xr-x. 2 root  root         6 Jul 21 22:52 marketing
+
+./company/departments/finance/:
+total 0
+drwxr-xr-x. 2 root managers 64 Jul 21 22:52 .
+drwxrwx---. 6 root root     59 Jul 21 22:52 ..
+-rw-r--r--. 1 root root      0 Jul 21 22:52 budget.xlsx
+-rw-r--r--. 1 root root      0 Jul 21 22:52 invoices.csv
+-rw-r--r--. 1 root root      0 Jul 21 22:52 reports.pdf
+
+./company/projects/:
+total 0
+drwx------. 5 root managers 57 Jul 21 22:52 .
+drwxr-xr-x. 4 root root     41 Jul 21 22:52 ..
+drwxr-xr-x. 2 root root     55 Jul 21 22:52 project_a
+drwxr-xr-x. 2 root root     67 Jul 21 22:52 project_b
+drwxr-xr-x. 2 root root      6 Jul 21 22:52 project_c
+[root@localhost permission_practice]# 
 
 ```
 
