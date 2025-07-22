@@ -400,9 +400,9 @@ Mike:30:Busan:Manager
 **11-4.** 모든 `.txt` 파일에서 가장 많이 사용된 단어 상위 5개 출력하세요.
 
 ```shell
-[hoseung@localhost text_processing_practice]$ sort -nr ./*.txt | uniq -c | tail -n 5
-      1 grape
-      2 date
+[hoseung@localhost text_processing_practice]$ sort -n ./*.txt | uniq -c | sort -n | tail -n 5
+      2 Windows
+      3 Linux
       4 cherry
       5 banana
       6 apple
