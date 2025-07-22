@@ -282,24 +282,7 @@ drwxr-xr-x. 5 root managers 57 Jul 21 22:52 .
 
 ```
     
-  ---
 
-  ## **5\. 실전 시나리오 해결**
-
-  ### **5-1. 보안 감사 및 수정**
-
-다음 보안 문제들을 찾아서 수정하세요:
-
-1. 777 권한으로 설정된 파일이나 디렉터리를 찾아 적절한 권한으로 변경  
-2. 다른 사용자가 읽을 수 있는 민감한 파일들의 권한 수정  
-3. 실행 권한이 없어야 할 데이터 파일에서 실행 권한 제거
-
-**명령어를 작성하세요:**
-```shell
-#학원에서 할 것.?
-find . -perm 755 -print
-
-```
   ## **6\. umask 및 기본 권한 관리**
 
   ### **6-1. umask 설정 및 테스트**
@@ -344,6 +327,30 @@ drwxr-x---. 3 root root 22 Jul 21 23:50 ..
 - \# 6-2 답안 작성란  
 ```shell
 
+#.bashrc 파일 맨 밑줄에 추가
+
+# alice 사용자: umask 022 설정 (일반적인 개발자 설정)
+cd /home/alice/.bashrc
+#.bashrc 파일 내용 추가
+umask 022
+
+# diana 사용자: umask 077 설정 (보안 강화 설정)
+cd /home/diana/.bashrc
+#.bashrc 파일 내용 추가
+umask 077
+
+# eve 사용자: umask 002 설정 (그룹 협업 친화적 설정)
+cd /home/eve/.bashrc
+#.bashrc 파일 내용 추가
+umask 002
+
+
+
+#다른 방법
+sh -c 'echo "umask 022" >> /home/alice/.bashrc'
+sh -c 'echo "umask 077" >> /home/diana/.bashrc'
+sh -c 'echo "umask 002" >> /home/eve/.bashrc'
+#각 사용자는 재로그인해야 적용됩니다."
 ```
     
   ---
@@ -387,13 +394,7 @@ drwxr-x---. 3 root root 22 Jul 21 23:50 ..
 
 - \# 8-2 답안 작성란  
 ```shell
-# alice 사용자: umask 022 설정 (일반적인 개발자 설정)
-sh -c 'echo "umask 022" >> /home/alice/.bashrc'
-# diana 사용자: umask 077 설정 (보안 강화 설정)
-sh -c 'echo "umask 077" >> /home/diana/.bashrc'
-# eve 사용자: umask 002 설정 (그룹 협업 친화적 설정)
-sh -c 'echo "umask 002" >> /home/eve/.bashrc'
-#각 사용자는 재로그인해야 적용됩니다."
+
 ``` 
     
   ---
