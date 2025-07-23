@@ -52,6 +52,11 @@ nano source 80_1_shell_variables_aguments.sh
 file_name="$1"
 file_content="$2"
 
+if [ "$#" -ne 2 ]; then
+        echo "인자의 갯수가 부족합니다." 
+        exit 1
+fi
+
 touch ./"$file_name"
 echo "$file_content" > "$file_name"
 echo "$file_name 파일이 성공적으로 생성되었습니다."
