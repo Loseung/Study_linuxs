@@ -172,6 +172,38 @@ Enter input file: article.txt
 
 Unique words saved to: article\_unique.txt
 
+```shell
+nano unique_words.sh
+
+#nano
+read -p "Enter input file: " V_FILE
+V_FILENAME="$(echo $V_FILE | tr '.' ' ' | cut -d ' ' -f1)"
+V_EXTENTION="$(echo $V_FILE | tr '.' ' ' | cut -d ' ' -f2)"
+
+echo "$(cat $V_FILE | sort | tr ' ' '\n' | tr -d '[0-9]' | tr -d '[]:,-.' | grep -v '^$' | uniq)"
+echo Unique words saved to: "$V_FILENAME"_unique."$V_EXTENTION"
+
+[hoseung@localhost env]$ source unique_words.sh 
+Enter input file: article.txt
+INFO
+Start
+processing
+ERROR
+Failed
+to
+load
+file
+INFO
+Retrying
+ERROR
+Timeout
+ERROR
+Disk
+full
+Unique words saved to: article_unique.txt
+
+```
+
 ---
 
 ### **✅ \[문제 4\] 두 파일의 마지막 줄 비교**
@@ -193,6 +225,27 @@ Unique words saved to: article\_unique.txt
 bash compare\_lastline.sh file1.txt file2.txt
 
 Result: Different
+
+```shell
+#nano
+V_TEXT1="$(cat $1 | tail -n1)"
+V_TEXT2="$(cat $2 | tail -n1)"
+V_RES="Result: "
+
+if diff <(echo "$V_TEXT1") <(echo "$V_TEXT2"); then
+    echo "$V_RES Same"
+else
+    echo "$V_RES Different"
+fi
+
+[hoseung@localhost env]$ bash compare_lastline.sh file1.txt file2.txt
+1c1
+< Last line A
+---
+> Last line B
+Result:  Different
+
+```
 
 ---
 
@@ -224,6 +277,34 @@ Output:
 
 2 daum.net
 
+```shell
+#cut과 tr사용
+#nano
+read -p "Enter file name: " V_FILE
+echo -e "Output \n $(cat $V_FILE | cut -d' ' -f2 | cut -d'@' -f2 | tr -d '>' | sort -r | uniq -c)"
+
+[hoseung@localhost env]$ bash email_domains.sh
+Enter file name: people.txt
+Output 
+       3 naver.com
+      3 gmail.com
+      2 daum.net
+
+
+
+#awk사용
+#nano
+read -p "Enter file name: " V_FILE
+echo -e "Output \n $(cat $V_FILE | awk -F '[<@>]' '{print $3}' | sort -r | uniq -c)"
+
+[hoseung@localhost env]$ bash email_domains.sh
+Enter file name: people.txt
+Output 
+       3 naver.com
+      3 gmail.com
+      2 daum.net
+
+```
 ---
 
 ### **✅ \[문제 6\] 다단계 파이프라인 정제**
@@ -257,3 +338,19 @@ Output:
 20 python  
 
 ...
+```shell
+#nano                   
+read -p "Enter file to process: " V_FILE
+echo -e "Output \n $(cat $V_FILE | awk -F '[<@>]' '{print $3}' | sort | tr '[A-Z]' '[a-z]' | uniq -c | sort -nr)"
+
+
+
+#document.txt파일이 없어 people.txt 파일로 대체
+[hoseung@localhost env]$ bash word_freq_sort.sh 
+Enter file to process: people.txt
+Output 
+       3 naver.com
+      3 gmail.com
+      2 daum.net
+
+```
