@@ -54,7 +54,7 @@ file_content="$2"
 
 if [ "$#" -ne 2 ]; then
         echo "인자의 갯수가 부족합니다." 
-        exit 1
+        return
 fi
 
 touch ./"$file_name"
